@@ -21,13 +21,13 @@ if __name__ == '__main__':
 
     elif sys.argv[1] == 'predict':
         
-        # clf = ml_model.load_model()
+        clf = ml_model.load_model()
 
         # Process each png or jpg in the folder 'inputs'
         for file in os.listdir('inputs'):
             if file.endswith('.png') or file.endswith('.jpg'):
                 print(f"Predicting {file}...")
-                image = ml_model.predict_photo(clf, cv2.imread("./inputs/" + file))
+                image, prediction, proba = ml_model.predict_photo(clf, cv2.imread("./inputs/" + file))
                 # Save the image to 'results' folder
                 cv2.imwrite("./inputs/results/" + file, image)
 
